@@ -26,7 +26,7 @@ class AddEmailVarificationTokenToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email_verification_token',120);
+            $table->dropColumn('email_verification_token');
         });
     }
 }

@@ -21,7 +21,7 @@ Route::post('/contact', 'FrontendController@contactForm');
 Route::get('/service', 'FrontendController@service')->name('service');
 
 Route::get('/mail', function(){
-    
+
     $data = [
         "fname" => "Tawhidul Islam",
         "lname" => "Khan",
@@ -32,7 +32,7 @@ Route::get('/mail', function(){
     return new ContactForm($data);
 });
 
-/* 
+/*
 | ==========================
 |  Authenticate Routes
 | ==========================
@@ -48,7 +48,7 @@ Route::get('/verify/{token}','AuthController@verify')->name('verify');
 Route::get('/verify-again','AuthController@verifyAgain')->name('verifyAgain');
 Route::post('/verify-again','AuthController@resendVerification');
 
-/* 
+/*
 | ==========================
 |  Password Reset Routes
 | ==========================
@@ -75,7 +75,7 @@ Route::group(['prefix'=>'/admin'],function(){
     Route::resource('/role','RoleController');
 
     /*=================
-      | User Settings 
+      | User Settings
     ====================*/
 
     Route::resource('/user','UserController');

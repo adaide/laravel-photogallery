@@ -13,6 +13,6 @@ class Service extends Model
     }
 
     public function price(){
-       return money_format('%i',$this->price);
+       return $this->price;
     }
 }

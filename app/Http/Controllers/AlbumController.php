@@ -18,7 +18,7 @@ class AlbumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $data["albums"] = Album::latest()->paginate(10);
         return view('backend.album.index',$data);
     }
@@ -46,13 +46,13 @@ class AlbumController extends Controller
             'bannner' => 'image'
         ]);
 
-        
+
         $imgName = \photon_image_process($request,"banner");
 
 
         Album::create([
             'name' => $request->name,
-            'slug' => str_slug($request->name),
+            'slug' => str_slug($request->name, ''),
             'banner' => $imgName
         ]);
 
@@ -78,7 +78,7 @@ class AlbumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Album $album)
-    {   
+    {
         $data["album"] = $album;
         return view('backend.album.edit',$data);
     }
@@ -97,7 +97,7 @@ class AlbumController extends Controller
             'bannner' => 'image'
         ]);
 
-        
+
         if($request->banner){
 
             $imgName = sprintf('%s%s.%s',str_random(10),
@@ -106,9 +106,9 @@ class AlbumController extends Controller
 
             $request->banner->storeAs('images',$imgName);
         }else{
-            
+
             $imgName = $album->banner;
-            
+
         }
 
 
@@ -145,9 +145,9 @@ class AlbumController extends Controller
     {
 
         $data['album'] = Album::where('slug',$slug)->first();
-    
+
         return view('single',$data);
     }
 
-    
+
 }
